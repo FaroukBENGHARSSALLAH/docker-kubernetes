@@ -1,8 +1,7 @@
 Docker Kuebrnetes
 ==========================
 
-Basic steps to start deploying in docker containers and Kubernetes containers management
-Used APIs.
+Basic steps to start deploying in docker containers and Kubernetes containers management tool.
 
 ###### What's Docker
 Docker is a tool designed to make it easier to create, deploy, and run applications by using containers. 
@@ -56,7 +55,7 @@ To run it type
 sudo docker run -d --p 8081:80 appangular
 ```
 
--notes : 
+###### Notes : 
   In the node project 's docker file, we haven't set port using EXPOSE keyword, so it will be by default 80. Thus, we access the site
 from the outside using 8081 port. Use localhost:8081, the docker engine will translate the request coming from 8081 to the 'appangular' 
 80 port container. 
