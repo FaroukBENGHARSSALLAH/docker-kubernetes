@@ -1,10 +1,14 @@
-# stage 1
-FROM node:latest as node
+FROM trion/ng-cli as builder
 WORKDIR /app
+COPY package.json package.json
+COPY package-lock.json package-lock.json
+RUN npm ci  --debug 
 COPY . .
-RUN npm install
-RUN npm run build --prod
+RUN ng build --prod
 
-# stage 2
-FROM nginx:alpine
-COPY --from=node /app/dist/angular-app /usr/share/nginx/html
+
+FROM nginx:1.17.5
+COPY default.conf.template /etc/nginx/conf.d/default.conf.template
+COPY nginx.conf /etc/nginx/nginx.conf
+COPY --from=builder  /app/dist/my-first-app /usr/share/nginx/html 
+CMD /bin/bash -c "envsubst '\$PORT' < /etc/nginx/conf.d/default.conf.template > /etc/nginx/conf.d/default.conf" && nginx -g 'daemon off;'

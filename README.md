@@ -52,7 +52,7 @@ sudo docker build -t appangular:v1 .
 
 To run it type
 ```
-sudo docker run -d --p 8081:80 appangular
+sudo docker run -d -p 8081:80 appangular
 ```
 
 ###### Notes : 
