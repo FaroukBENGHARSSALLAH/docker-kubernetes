@@ -35,6 +35,6 @@ You can change parameters in the docker compose file; ports, name, volumes..
 
 To check if the frontend part is working, type
 ```
-wget http://localhost:3200/
+wget http://localhost:80/
 ```
 

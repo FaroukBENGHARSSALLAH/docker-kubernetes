@@ -25,6 +25,7 @@ services:
     #Environment variables for Spring Boot Application.
     environment:
       - MONGO_URL=mongo-db
+      - MONGO_DATA_BASE=etf
     ports:
       - 8080:8080 
     links:
@@ -37,7 +38,7 @@ services:
     ports:
       - 3200:80
     links:
-      - scrum-app
+      - backend
 
 #Volumes for DB data
 volumes:
