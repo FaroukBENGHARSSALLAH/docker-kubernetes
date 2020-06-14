@@ -1,0 +1,44 @@
+
+version: '3'
+
+ #images list
+services:
+
+  #Mongodb
+  mongo-db:
+    image: "mongo"
+    container_name: mongo-db
+      # persistent volume
+    volumes:
+      - mongo-data:/var/lib/mongo/data
+    ports:
+      - 27017:27017 
+     #Environment variable for DB url
+    environment:
+      - MONGO_DATA_BASE=etf
+
+  #Back-end Spring Boot Application
+  scrum-app:
+    #The docker file in scrum-app build the jar and provides the docker image with the following name.
+    build: ./backend
+    container_name: scrum-app
+    #Environment variables for Spring Boot Application.
+    environment:
+      - MONGO_URL=mongo-db
+    ports:
+      - 8080:8080 
+    links:
+      - mongo-db
+
+  #Fron-end ReactJS Application
+  scrum-ui:
+    build: ./frontend
+    container_name: frontend
+    ports:
+      - 3200:80
+    links:
+      - scrum-app
+
+#Volumes for DB data
+volumes:
+  mongo-data:
