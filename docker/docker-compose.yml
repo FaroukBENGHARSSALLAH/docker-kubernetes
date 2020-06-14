@@ -18,10 +18,10 @@ services:
       - MONGO_DATA_BASE=etf
 
   #Back-end Spring Boot Application
-  scrum-app:
+  backend:
     #The docker file in scrum-app build the jar and provides the docker image with the following name.
     build: ./backend
-    container_name: scrum-app
+    container_name: backend
     #Environment variables for Spring Boot Application.
     environment:
       - MONGO_URL=mongo-db
@@ -31,7 +31,7 @@ services:
       - mongo-db
 
   #Fron-end ReactJS Application
-  scrum-ui:
+  frontend:
     build: ./frontend
     container_name: frontend
     ports:
