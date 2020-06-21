@@ -16,6 +16,8 @@ services:
      #Environment variable for DB url
     environment:
       - MONGO_DATA_BASE=etf
+    networks:
+      - app-network
 
   #Back-end Spring Boot Application
   backend:
@@ -28,8 +30,10 @@ services:
       - MONGO_DATA_BASE=etf
     ports:
       - 8080:8080 
-    links:
+    depends_on:
       - mongo-db
+    networks:
+      - app-network  
 
   #Fron-end ReactJS Application
   frontend:
@@ -37,8 +41,14 @@ services:
     container_name: frontend
     ports:
       - 3200:80
-    links:
-      - backend
+    networks:
+      - app-network
+      
+      
+  #Enable Network communication   
+  networks:
+    app-network:
+       driver: bridge
 
 #Volumes for DB data
 volumes:
