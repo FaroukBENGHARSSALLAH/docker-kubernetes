@@ -1,6 +1,13 @@
-
 version: '3'
 
+#Volumes for DB data
+volumes:
+  mongo-data:
+      
+#Enable Network communication   
+networks:
+   app-network:
+       
  #images list
 services:
 
@@ -41,15 +48,11 @@ services:
     container_name: frontend
     ports:
       - 3200:80
+    depends_on:
+      - mongo-db  
     networks:
       - app-network
       
-      
-  #Enable Network communication   
-  networks:
-    app-network:
-       driver: bridge
 
-#Volumes for DB data
-volumes:
-  mongo-data:
+
+
