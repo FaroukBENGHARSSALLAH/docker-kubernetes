@@ -1,5 +1,4 @@
 FROM nginx:alpine
-COPY --from=build /usr/src/app/build /usr/share/nginx/html
 COPY default.conf /etc/nginx/nginx.conf
 
 COPY /build/. /usr/share/nginx/html
