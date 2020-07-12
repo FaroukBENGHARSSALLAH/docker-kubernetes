@@ -48,7 +48,7 @@ services:
     build: ./frontend
     container_name: frontend
     ports:
-      - 3200:80
+      - 80:80
     depends_on:
       - mongo-db  
     networks:

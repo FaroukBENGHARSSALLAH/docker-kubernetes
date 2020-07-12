@@ -3,7 +3,7 @@ import Navbar from './component/navbar/Navbar';
 import ETFComponent from './component/etf/ETFComponent';
 import LoginComponent from './component/login/LoginComponent';
 
-import '../node_modules/font-awesome/css/font-awesome.min.css';
+import '/font-awesome/css/font-awesome.min.css';
 
 class App extends Component {
 	
