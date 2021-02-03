@@ -1,40 +1,23 @@
-Docker Compose
+docker
 ==========================
 
-A docker compose file to synchronise deploying a MongoDB, Spring Boot and ReactJS projects as docker containers.
-
-
-###### Start deploying
-Clone the project repository.
-
-- navigate to the docker folder
-```
-  git clone https://github.com/FaroukBENGHARSSALLAH/docker-kubernetes.git
-  cd docker-kubernetes
-  cd docker
-```
-
-
-- Customization
-You can change parameters in the docker compose file; ports, name, volumes..
-```
-   vim docker-compose.yml
-   
-```
-
-###### Starting
+You can build the spring boot project in a docker images using the docker file in the project folder using this commands
 
 ```
-  docker-compose up
+sudo docker build -t demo:v1 .
 ```
 
-  To check if the backend part is working, populate the database by typing
+To run it type
 ```
- wget http://localhost:8080/api/pop .
-```
-
-To check if the frontend part is working, type
-```
-wget http://localhost:80/
+sudo docker run -d -p 8082:8080 demo
 ```
 
+Open the browser on localhost:8082 on you will get 
+```
+The site is working
+```
+
+###### Notes : 
+  In the  project 's docker file, we have set port using EXPOSE to 8080. We access the site
+from the outside using 8082 ; localhost:8082 as the docker engine will translate the request coming from 8082 to the 'demo' 
+8080 port container. 

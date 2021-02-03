@@ -44,31 +44,6 @@ Kubernetes cluster inside a Virtual Machine (VM) on your laptop for users lookin
   minikube start
 ```
 
-After that you can build the node project in a docker images using the docker file in the project folder
-using this commands
-```
-sudo docker build -t appangular:v1 .
-```
-
-To run it type
-```
-sudo docker run -d -p 8081:80 appangular
-```
-
-###### Notes : 
-  In the node project 's docker file, we haven't set port using EXPOSE keyword, so it will be by default 80. Thus, we access the site
-from the outside using 8081 port. Use localhost:8081, the docker engine will translate the request coming from 8081 to the 'appangular' 
-80 port container. 
-
-To deploy on the Kubernetes : 
-```
-kubectl create deployment appangular --image=appangular:v1
-kubectl get pods
-kubectl expose deployment appangular --type=LoadBalancer --port 80 --target-port 8080
-kubectl get service
-```
-
-Then copy the 'EXTERNAL-IP' value and open it in a browser.
 
 
 

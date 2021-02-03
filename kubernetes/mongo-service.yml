@@ -1,25 +1,21 @@
-apiVersion: apps/v1
-kind: Deployment
+apiVersion: v1
+kind: Service
 metadata:
-  name: mongo
+  name: mongo-service
 spec:
+  type: NodePort
+  ports:
+    - port: 27017           
+      nodePort: 30003       
   selector:
-    matchLabels:
-      app: mongo
-  replicas: 1
-  template:
-    metadata:
-      labels:
-        app: mongo
-    spec:
-      containers:
-      - name: mongo
-        image: mongo:latest
-        volumeMounts:
-        - name: mongo-volume
-          mountPath: /data/db
-      volumes:
-       - name: mongo-volume
-         hostPath:
-           path: /mnt/mongo-volume
-           type: DirectoryOrCreate
+    app: mongo
+    
+    
+    
+ #BASH
+ # - minikube ip
+ # - curl http://[minikube ip]:[nodePort]   
+  
+  
+ #kubectl expose deployment app-server --name app-server-service  --type NodePort --protocol TCP --port 8080 --node-port 30001
+  
